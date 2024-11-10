@@ -10,14 +10,14 @@ Given a js source file with so many things going on there. We're able to select 
 
 Below is what happens when we want to only maintain a function called **`start`** and its dependencies
 
-<table style="max-width:500px;margin:auto"><thead>
+<table style="max-width:100px;margin:auto"><thead>
   <tr>
     <th style="background:black;color:white">1. Source Code -> keep start function</th>
   </tr></thead>
 <tbody>
   <tr>
     <td>
-        <img src="https://raw.githubusercontent.com/doc-han/static-shaker/master/statics/code.png" />
+        <img width="400" src="https://raw.githubusercontent.com/doc-han/static-shaker/master/statics/code.png" />
     </td>
   </tr>
 </tbody>
@@ -28,7 +28,7 @@ Below is what happens when we want to only maintain a function called **`start`*
 <tbody>
   <tr>
     <td>
-        <img src="https://raw.githubusercontent.com/doc-han/static-shaker/master/statics/code-traced.png" />
+        <img width="400" src="https://raw.githubusercontent.com/doc-han/static-shaker/master/statics/code-traced.png" />
     </td>
   </tr>
 </tbody>
@@ -39,7 +39,7 @@ Below is what happens when we want to only maintain a function called **`start`*
 <tbody>
   <tr>
     <td>
-        <img src="https://raw.githubusercontent.com/doc-han/static-shaker/master/statics/code-final.png" />
+        <img width="400" src="https://raw.githubusercontent.com/doc-han/static-shaker/master/statics/code-final.png" />
     </td>
   </tr>
 </tbody> 
