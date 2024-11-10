@@ -1,0 +1,36 @@
+{
+  "name": "static-shaker",
+  "version": "0.1.0",
+  "main": "./build/index.cjs.js",
+  "repository": "https://github.com/doc-han/static-shaker.git",
+  "author": "Farhan Yahaya <yahyafarhan48@gmail.com>",
+  "scripts": {
+    "test": "jest",
+    "build:cjs-build": "esbuild ./src/static-shaker.ts --bundle --format=cjs --minify --platform=node --outfile=./build/index.cjs.js",
+    "build:esm-build": "esbuild ./src/static-shaker.ts --bundle --format=esm --minify --platform=node --outfile=./build/index.esm.js",
+    "build:clear": "rm -rf ./build",
+    "build": "yarn build:clear && yarn build:cjs-build && yarn build:esm-build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ast-types": "^0.14.2",
+    "recast": "^0.23.9"
+  },
+  "exports": {
+    "import": "./build/index.esm.js",
+    "require": "./build/index.cjs.js"
+  },
+  "files": [
+    "./build",
+    "tsconfig.json",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.9.0",
+    "esbuild": "^0.24.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
+  }
+}

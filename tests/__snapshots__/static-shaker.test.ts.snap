@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`example01.ts someOtherFunc 1`] = `
+"import path from "path";
+import fs from "fs";
+
+const GLOBAL_VAR = "some-global-var";
+
+function someOtherFunc() {
+  const fPath = path.join(__dirname, GLOBAL_VAR);
+  fs.readFileSync(fPath);
+}
+"
+`;
+
+exports[`example01.ts start function 1`] = `
+"import path from "path";
+
+const GLOBAL_VAR = "some-global-var";
+
+function genConfig() {
+  return {
+    name: GLOBAL_VAR,
+    path,
+  };
+}
+
+const start = () => {
+  const config = genConfig();
+  console.log(config);
+};
+
+export default start;
+"
+`;
+
+exports[`example02.ts BoxModal 1`] = `
+"import React from "react";
+import styles from "./googleGPT.modules.css";
+
+const BoxModal: React.FC = () => {
+  return (
+    (<div className={styles.boxModal}>
+      <button>Search with GPT</button>
+    </div>)
+  );
+};
+export default BoxModal;
+"
+`;
+
+exports[`example02.ts getConfig 1`] = `
+"const MATCHES = ["*://*.google.com"];
+
+export function getConfig() {
+  return {
+    matches: MATCHES,
+  };
+}
+"
+`;
