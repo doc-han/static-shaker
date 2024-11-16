@@ -8,8 +8,10 @@
     "test": "jest",
     "build:cjs-build": "esbuild ./src/static-shaker.ts --bundle --format=cjs --minify --platform=node --outfile=./build/index.cjs.js",
     "build:esm-build": "esbuild ./src/static-shaker.ts --bundle --format=esm --minify --platform=node --outfile=./build/index.esm.js",
+    "build:types": "tsc --emitDeclarationOnly --declaration",
     "build:clear": "rm -rf ./build",
-    "build": "yarn build:clear && yarn build:cjs-build && yarn build:esm-build"
+    "build": "yarn build:clear && yarn build:cjs-build && yarn build:esm-build  && yarn build:types",
+    "push": "yarn build && npm publish"
   },
   "license": "MIT",
   "dependencies": {
@@ -20,10 +22,13 @@
     "import": "./build/index.esm.js",
     "require": "./build/index.cjs.js"
   },
+  "types": "./build/static-shaker.d.ts",
   "files": [
     "./build",
+    "statics",
     "tsconfig.json",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "devDependencies": {
     "@types/jest": "^29.5.14",
