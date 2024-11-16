@@ -34,3 +34,13 @@ describe("example02.ts", () => {
     expect(output).toMatchSnapshot();
   });
 });
+
+describe("example03.ts", () => {
+  it("multiple", () => {
+    const output = staticShaker(
+      path.join(__dirname, "./files/example03.ts"),
+      ["two", "three"]
+    )
+    expect(output).toMatchSnapshot()
+  })
+})

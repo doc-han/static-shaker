@@ -59,3 +59,19 @@ export function getConfig() {
 }
 "
 `;
+
+exports[`example03.ts multiple 1`] = `
+"const b = 4;
+const a = 2;
+
+function two() {
+  const q = a;
+  return q;
+}
+
+function three() {
+  const t = b;
+  return t;
+}
+"
+`;

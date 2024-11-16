@@ -6,17 +6,16 @@ import * as tsParser from "recast/parsers/babel-ts";
 
 interface StatiShakerOptions {
   isExported: boolean;
-  isFunction: boolean;
 }
 
 function staticShaker(
   path: string,
-  identifier: string,
+  identifier: string[] | string,
   options?: Partial<StatiShakerOptions>
 ) {
+  if (!Array.isArray(identifier)) identifier = [identifier];
   const baseOptions: StatiShakerOptions = {
     isExported: false,
-    isFunction: false,
   };
 
   const _options = { ...baseOptions, ...(options ? options : {}) };
@@ -27,7 +26,6 @@ function staticShaker(
 
   const store = new Map<string, number[]>();
   const deps = new Map<number, number[]>();
-  let mainNode: NodePath["node"];
 
   function mapper(
     cb: (_path: NodePath) => string | undefined,
@@ -39,7 +37,6 @@ function staticShaker(
       while (!namedTypes.Program.check(parentP.parentPath.node)) {
         parentP = parentP.parentPath;
       }
-      if (id === identifier) mainNode = path.node;
       const prevLocs = id ? _store.get(id) || [] : [];
       if (id) _store.set(id, [...prevLocs, parentP.name]);
       return false;
@@ -57,7 +54,11 @@ function staticShaker(
     ),
   });
 
-  const mainNodePos = store.get(identifier) || [];
+  const mainNodePos = [];
+  for (const id of identifier) {
+    const pos = store.get(id);
+    if (pos !== undefined) mainNodePos.push(...pos);
+  }
   if (!mainNodePos.length) throw new Error(identifier + " not defined");
   const mainNodeGrands = mainNodePos.map((p) => file.program.body[p]);
 
@@ -66,8 +67,6 @@ function staticShaker(
     !mainNodeGrands.some((g) => namedTypes.ExportNamedDeclaration.check(g))
   )
     throw new Error("config found but not exported");
-  if (_options.isFunction && !namedTypes.FunctionDeclaration.check(mainNode))
-    throw new Error("config exported but definition isn't a function");
 
   file.program.body.forEach((node, i) => {
     const tempDeps: number[] = [];
