@@ -17,9 +17,6 @@ jobs:
         with:
           node-version: "20.x"
 
-      - name: Set registry-url
-        run: npm config set registry 'https://registry.npmjs.org'
-
       - name: Install dependencies
         run: yarn --frozen-lockfile
 

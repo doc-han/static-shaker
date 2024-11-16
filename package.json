@@ -30,6 +30,9 @@
     "README.md",
     "LICENSE"
   ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "^22.9.0",
